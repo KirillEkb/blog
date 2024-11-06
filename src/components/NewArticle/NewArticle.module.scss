@@ -1,0 +1,25 @@
+.form {
+    width: 938px;//change
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 32px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.tagList {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: left;
+}
+
+.tagListText {
+    width: 100%;
+}
+
+

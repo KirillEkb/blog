@@ -1,0 +1,67 @@
+.post {
+    width: 938px;
+    height: 140px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto 2fr 46px;
+    grid-template-rows: 28px 20px auto;
+    grid-template-areas: 
+        "title likes author avatar"
+        "tag tag date avatar"
+        "text text text text";
+    column-gap: 8px;
+    row-gap: 5px;
+}
+
+.title {
+    font-family: Inter UI;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: left;
+    color: #0073e6;
+    overflow: hidden;
+    &:hover {
+        cursor: pointer;
+        color: #00aaff;
+    }
+}
+
+.tag {
+    grid-area: tag;
+    font-size: 12px;
+}
+
+.likes {
+    grid-area: likes;
+    font-size: 14px;
+    color: #666;
+}
+
+.text {
+    grid-area: text;
+    font-size: 12px;
+    color: #666;
+}
+
+.author {
+    grid-area: author;
+    font-size: 14px;
+    color: #333;
+    text-align: right;
+}
+
+.avatar {
+    grid-area: avatar;
+    max-width: 48px;
+    max-height: 48px;
+    border-radius: 50%;
+}
+
+.date {
+    grid-area: date;
+    color: #999;
+    text-align: right;
+}

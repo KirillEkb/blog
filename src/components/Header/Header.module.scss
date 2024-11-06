@@ -1,0 +1,38 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 22px;
+    background-color: #fff;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+.username {
+    font-family: Inter UI;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: left;
+}
+.avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+}
+
+.profile {
+    display: flex;
+    gap: 10px;
+    margin: 0 10px;
+    align-items: center;
+    outline: none;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+    &:hover {
+        filter: brightness(1.2);
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.5);
+    }
+}
