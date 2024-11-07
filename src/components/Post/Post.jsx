@@ -2,7 +2,6 @@ import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 
 import Button from '../Button/Button';
-import LoadOrError from '../LoadOrError/LoadOrError';
 import Like from '../Like/Like';
 
 import classes from './Post.module.scss';
@@ -26,7 +25,6 @@ function Post(props) {
 
   return (
     <>
-      <LoadOrError />
       <div className={post}>
         <Link to={`/article/${props.slug}`} className={title}>
           {props.title}

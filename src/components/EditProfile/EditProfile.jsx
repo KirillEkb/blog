@@ -48,8 +48,6 @@ const EditProfile = () => {
   const submitButton = { text: 'Save', disabled: false };
   const onSubmit = (data) => {
     dispatch(editProfile(data));
-    console.log(data);
-    console.log(user);
     if (
       user.username == data.username &&
       user.email == data.email &&

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import { Popconfirm } from 'antd';
 
 import Button from '../Button/Button';
 import Like from '../Like/Like';
@@ -22,7 +23,6 @@ function Article() {
   const { post, error, user } = useSelector((state) => {
     return state.app;
   });
-  console.log(post);
   const {
     author,
     description,
@@ -70,7 +70,16 @@ function Article() {
           <Markdown className={classes.description}>{description}</Markdown>
           {myArticle && (
             <div className={classes.buttons}>
-              <Button onClick={(e) => deletePost(e)} pclass="delete" text="Delete" />
+              <Popconfirm
+                title="Delete the article"
+                description="Are you sure to delete this article?"
+                onConfirm={(e) => deletePost(e)}
+                placement="rightTop"
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button pclass="delete" text="Delete" />
+              </Popconfirm>
               <Link to={`/articles/${slugParam}/edit`}>
                 <Button pclass="edit" text="Edit" />
               </Link>

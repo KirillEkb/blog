@@ -174,11 +174,13 @@ const appSlice = createSlice({
     builder.addCase(toFavorite.fulfilled, (state, action) => {
       state.loading = false;
       state.error = null;
+      state.posts = state.posts.map((post) => (post.slug == action.payload.slug ? action.payload : post));
       state.post = action.payload;
     });
     builder.addCase(toFavorite.rejected, (state, action) => {
+      console.log(action);
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload;
     });
 
     builder.addCase(deleteFavorite.pending, (state) => {
@@ -188,11 +190,12 @@ const appSlice = createSlice({
     builder.addCase(deleteFavorite.fulfilled, (state, action) => {
       state.loading = false;
       state.error = null;
+      state.posts = state.posts.map((post) => (post.slug == action.payload.slug ? action.payload : post));
       state.post = action.payload;
     });
     builder.addCase(deleteFavorite.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload;
     });
   },
 });

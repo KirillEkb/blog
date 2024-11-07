@@ -2,10 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const baseUrl = 'https://blog-platform.kata.academy/api';
 const token = localStorage.getItem('authToken');
+const authHeaders = { headers: { Authorization: `Bearer ${token}` } };
 
 export const getPosts = createAsyncThunk('getPosts', async (offset, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${baseUrl}/articles?offset=${offset}`);
+    const response = await fetch(`${baseUrl}/articles?offset=${offset}`, authHeaders);
     if (!response.ok) {
       return rejectWithValue(response.statusText);
     }
@@ -18,7 +19,7 @@ export const getPosts = createAsyncThunk('getPosts', async (offset, { rejectWith
 
 export const getArticle = createAsyncThunk('getArticle', async ({ slug }, { rejectWithValue }) => {
   try {
-    const response = await fetch(`${baseUrl}/articles/${slug}`);
+    const response = await fetch(`${baseUrl}/articles/${slug}`, authHeaders);
     if (!response.ok) {
       return rejectWithValue(response.statusText);
     }
@@ -30,7 +31,6 @@ export const getArticle = createAsyncThunk('getArticle', async ({ slug }, { reje
 });
 
 export const createUser = createAsyncThunk('createUser', async (userData, { rejectWithValue }) => {
-  console.log(userData);
   try {
     const response = await fetch(`${baseUrl}/users`, {
       method: 'POST',
@@ -79,12 +79,7 @@ export const isLoggedIn = createAsyncThunk('isLoggedIn', async (_, { rejectWithV
   }
   try {
     if (token) {
-      const response = await fetch(`${baseUrl}/user`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(`${baseUrl}/user`, authHeaders);
       if (!response.ok) {
         throw new Error('Failed to log in');
       }
@@ -176,12 +171,7 @@ export const deleteArticle = createAsyncThunk('deleteArticle', async (slugParam,
     return rejectWithValue('Something went wrong');
   }
   try {
-    const response = await fetch(`${baseUrl}/articles/${slugParam}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(`${baseUrl}/articles/${slugParam}`, { method: 'DELETE', ...authHeaders });
     if (!response.ok) {
       const errorData = await response.json();
       return rejectWithValue(errorData.errors);
@@ -198,12 +188,7 @@ export const toFavorite = createAsyncThunk('toFavorite', async (slugParam, { rej
     return rejectWithValue('Log In first');
   }
   try {
-    const response = await fetch(`${baseUrl}/articles/${slugParam}/favorite`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(`${baseUrl}/articles/${slugParam}/favorite`, { method: 'POST', ...authHeaders });
     if (!response.ok) {
       const errorData = await response.json();
       return rejectWithValue(errorData.errors);
@@ -220,12 +205,7 @@ export const deleteFavorite = createAsyncThunk('deleteFavorite', async (slug, { 
     return rejectWithValue('Log In first');
   }
   try {
-    const response = await fetch(`${baseUrl}/articles/${slug}/favorite`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(`${baseUrl}/articles/${slug}/favorite`, { method: 'DELETE', ...authHeaders });
     if (!response.ok) {
       const errorData = await response.json();
       return rejectWithValue(errorData.errors);
