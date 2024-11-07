@@ -20,7 +20,7 @@
     row-gap: 5px;
 }
 
-.title {
+.title {//yes
     grid-area: title;
     font-family: Inter UI;
     font-size: 20px;
@@ -28,13 +28,15 @@
     text-align: left;
     color: $title;
     overflow: hidden;
-    &:hover {
+    &:hover, &:active, &:focus {
+        outline: none;
+        border: none;
         cursor: pointer;
         color: $titleHover;
     }
 }
 
-.tag {
+.tag {//yes
     grid-area: tag;
     font-size: 12px;
 }
@@ -45,7 +47,7 @@
     color: $description;
 }
 
-.likes {
+.likes {//yes
     grid-area: likes;
     font-size: 14px;
     color: $likes;
@@ -61,21 +63,21 @@
     }
 }
 
-.author {
+.author {//yes
     grid-area: author;
     font-size: 14px;
     color: $author;
     text-align: right;
 }
 
-.avatar {
+.avatar {//yes
     grid-area: avatar;
     max-width: 48px;
     max-height: 48px;
     border-radius: 50%;
 }
 
-.date {
+.date {//yes
     grid-area: date;
     color: $date;
     text-align: right;

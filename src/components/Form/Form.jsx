@@ -1,9 +1,9 @@
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link } from 'react-router-dom';
 
 import Button from '../Button/Button';
+import LinkButton from '../LinkButton/LinkButton';
 import Label from '../Label/Label';
 
 import classes from './Form.module.scss';
@@ -87,9 +87,7 @@ const Form = ({
       <Button type="submit" pclass="CreateAccount" text={submitButton.text} disabled={submitButton.disabled} />
       <p className={classes.text}>
         {bottomText.text}
-        <Link to={bottomText.link} className={classes.link}>
-          {bottomText.linkText}
-        </Link>
+        <LinkButton to={bottomText.link} pclass="bottomLink" text={bottomText.linkText} />
       </p>
     </form>
   );

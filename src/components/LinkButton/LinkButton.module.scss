@@ -1,0 +1,63 @@
+@import '../../variables.module.scss';
+
+.link {
+    outline: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    background-color: transparent;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover, &:active, &:focus {
+        cursor: pointer;
+        border: 1px solid $accept;
+        box-shadow: 0px 0px 0px 1px $acceptShadow;
+        color: $accept;
+    }
+    &:visited {
+        color: $description;
+    }
+}
+
+.bottomLink {
+    padding: 0px 0px;
+    padding-left: 5px;
+    font-size: 14px;
+    color: $complete;
+    text-decoration: none;
+    border: none;
+    &:hover, &:active, &:focus {
+        border: none;
+        box-shadow: none;
+        cursor: pointer;
+        color: $completeShadow;
+    }
+    &:visited {
+        color: $complete;
+    }
+}
+
+.noBorder {
+    border: 1px solid $transparent;
+}
+
+.createArticle {
+    font-size: 14px;
+    padding: 4px 8px;
+}
+
+
+.edit {
+    color: $accept;
+    border: 1px solid $accept;
+    width: 65px;
+    height : 40px;
+    line-height: 40px;
+    padding: 0px 0px;
+    &:hover, &:active, &:focus {
+        border: 1px solid $acceptShadow;
+        box-shadow: 0px 0px 0px 1px $acceptShadow;
+        color: $acceptShadow;   
+    }
+}

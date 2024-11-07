@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 
 import Button from '../Button/Button';
 import Like from '../Like/Like';
+import classes from '../Article/Article.module.scss';
 
-import classes from './Post.module.scss';
+import postClasses from './Post.module.scss';
 
 function Post(props) {
-  const { post, likes, title, tag, text, author, date, avatar } = classes;
+  const { likes, title, tag, text, author, date, avatar } = classes;
   const articleText = props.body && props.body.length > 200 ? props.body.slice(0, 200) + '...' : props.body;
   const tagText = (tag) => {
     if (tag.length > 10) {
@@ -25,7 +26,7 @@ function Post(props) {
 
   return (
     <>
-      <div className={post}>
+      <div className={postClasses.post}>
         <Link to={`/article/${props.slug}`} className={title}>
           {props.title}
         </Link>

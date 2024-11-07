@@ -12,14 +12,16 @@
 
     &:hover, &:active, &:focus {
         cursor: pointer;
-        border: 1px solid $accept;
-        box-shadow: 0px 0px 0px 1px $acceptShadow;
-        color: $accept;
+        filter: brightness(0.8);
     }
 }
 
 .noBorder {
     border: 1px solid $transparent;
+    &:hover, &:active, &:focus {
+        border: 1px solid $accept;
+        box-shadow: 0px 0px 0px 1px $acceptShadow;
+    }
 }
 
 .tag {
@@ -48,11 +50,6 @@
     :hover {
         background-color: $likes;
     }
-}
-
-.createArticle {
-    font-size: 14px;
-    padding: 4px 8px;
 }
 
 .add {
@@ -88,14 +85,3 @@
     }
 }
 
-.edit {
-    color: $accept;
-    border: 1px solid $accept;
-    width: 65px;
-    padding: 4px 8px;
-    &:hover, &:active, &:focus {
-        border: 1px solid $acceptShadow;
-        box-shadow: 0px 0px 0px 1px $acceptShadow;
-        color: $acceptShadow;   
-    }
-}

@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Button from '../Button/Button';
+import LinkButton from '../LinkButton/LinkButton';
 
 import classes from './Header.module.scss';
 
@@ -17,32 +18,20 @@ function Header() {
   };
   return (
     <header className={classes.header}>
-      <Link to="/">
-        <Button pclass="noBorder" text="Realworld Blog"></Button>
-      </Link>
+      <LinkButton to="/" pclass="noBorder" text="Realworld Blog"></LinkButton>
       <div className={classes.buttons}>
         {token && (
           <>
-            <Link to="/new-article">
-              <Button pclass="createArticle" text="Create article"></Button>
-            </Link>
+            <LinkButton to="/new-article" pclass="createArticle" text="Create article" />
             <Link to="/profile" className={classes.profile}>
               <span className={classes.username}>{username}</span>
               <img className={classes.avatar} src={image || noAvatar}></img>
             </Link>
           </>
         )}
-        {!token && (
-          <Link to="/sign-in">
-            <Button pclass="noBorder" text="Sign in"></Button>
-          </Link>
-        )}
+        {!token && <LinkButton to="/sign-in" pclass="noBorder" text="Sign in" />}
         {token && <Button onClick={LogOut} pclass="noBorder" text="Log out"></Button>}
-        {!token && (
-          <Link to="/sign-up">
-            <Button text="Sign up"></Button>
-          </Link>
-        )}
+        {!token && <LinkButton to="/sign-up" text="Sign up" />}
       </div>
     </header>
   );

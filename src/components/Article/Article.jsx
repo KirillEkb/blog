@@ -1,11 +1,12 @@
 import Markdown from 'markdown-to-jsx';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Popconfirm } from 'antd';
 
 import Button from '../Button/Button';
+import LinkButton from '../LinkButton/LinkButton';
 import Like from '../Like/Like';
 import LoadOrError from '../LoadOrError/LoadOrError';
 import { getArticle, deleteArticle } from '../../api/api';
@@ -80,9 +81,7 @@ function Article() {
               >
                 <Button pclass="delete" text="Delete" />
               </Popconfirm>
-              <Link to={`/articles/${slugParam}/edit`}>
-                <Button pclass="edit" text="Edit" />
-              </Link>
+              <LinkButton to={`/articles/${slugParam}/edit`} pclass="edit" text="Edit" />
             </div>
           )}
           <Markdown className={classes.text}>{body}</Markdown>
