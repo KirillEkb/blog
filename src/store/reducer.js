@@ -168,33 +168,26 @@ const appSlice = createSlice({
     });
 
     builder.addCase(toFavorite.pending, (state) => {
-      state.loading = true;
       state.error = null;
     });
     builder.addCase(toFavorite.fulfilled, (state, action) => {
-      state.loading = false;
       state.error = null;
       state.posts = state.posts.map((post) => (post.slug == action.payload.slug ? action.payload : post));
       state.post = action.payload;
     });
     builder.addCase(toFavorite.rejected, (state, action) => {
-      console.log(action);
-      state.loading = false;
       state.error = action.payload;
     });
 
     builder.addCase(deleteFavorite.pending, (state) => {
-      state.loading = true;
       state.error = null;
     });
     builder.addCase(deleteFavorite.fulfilled, (state, action) => {
-      state.loading = false;
       state.error = null;
       state.posts = state.posts.map((post) => (post.slug == action.payload.slug ? action.payload : post));
       state.post = action.payload;
     });
     builder.addCase(deleteFavorite.rejected, (state, action) => {
-      state.loading = false;
       state.error = action.payload;
     });
   },

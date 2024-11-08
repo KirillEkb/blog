@@ -19,7 +19,6 @@ function Post(props) {
     }
     return tag;
   };
-
   const tags = props.tagList
     .slice(0, 3)
     .map((el, index) => <Button key={el + index} pclass="tag" className={tag} text={tagText(el)} />);

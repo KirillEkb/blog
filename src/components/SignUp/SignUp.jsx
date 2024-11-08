@@ -7,6 +7,7 @@ import Form from '../Form/Form';
 import LoadOrError from '../LoadOrError/LoadOrError';
 import { createUser } from '../../api/api.js';
 import classes from '../Form/Form.module.scss';
+import { mainPath, signInPath } from '../../pathes';
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -16,13 +17,13 @@ const SignUp = () => {
   const { userCreated } = useSelector((state) => state.app);
   useEffect(() => {
     if (token) {
-      navigate('/');
+      navigate(mainPath);
     }
   }, [token, navigate]);
 
   useEffect(() => {
     if (userCreated) {
-      navigate('/sign-in');
+      navigate(signInPath);
     }
   }, [userCreated, navigate]);
   const {
@@ -71,7 +72,7 @@ const SignUp = () => {
     setIsChecked((prev) => !prev);
     setValue('checked', !isChecked);
   };
-  const bottomText = { text: 'Already have an account? ', link: '/sign-in', linkText: 'Sign in' };
+  const bottomText = { text: 'Already have an account? ', link: signInPath, linkText: 'Sign in' };
   return (
     <>
       <LoadOrError />

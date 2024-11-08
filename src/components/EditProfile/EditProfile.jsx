@@ -5,14 +5,17 @@ import { useEffect } from 'react';
 import Form from '../Form/Form';
 import LoadOrError from '../LoadOrError/LoadOrError';
 import { editProfile } from '../../api/api';
+import { signInPath, mainPath } from '../../pathes';
 
 const EditProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.app);
+  const authToken = localStorage.getItem('authToken');
   useEffect(() => {
-    if (!user.token) {
-      navigate('/sign-in');
+    console.log(user);
+    if (!user.token && !authToken) {
+      navigate(signInPath);
     }
   }, []);
 
@@ -54,7 +57,7 @@ const EditProfile = () => {
       user.image == data.avatar &&
       (user.password == data['new password'] || data['new password'] === '')
     ) {
-      navigate('/');
+      navigate(mainPath);
     }
   };
   return (

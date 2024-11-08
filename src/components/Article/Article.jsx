@@ -10,6 +10,7 @@ import LinkButton from '../LinkButton/LinkButton';
 import Like from '../Like/Like';
 import LoadOrError from '../LoadOrError/LoadOrError';
 import { getArticle, deleteArticle } from '../../api/api';
+import { mainPath } from '../../pathes';
 
 import classes from './Article.module.scss';
 
@@ -35,7 +36,6 @@ function Article() {
     title,
     favorited,
   } = post ?? {};
-  const noAvatar = './images/noAvatar.png';
 
   const tagText = (tag) => {
     if (tag.length > 10) {
@@ -55,7 +55,7 @@ function Article() {
   const deletePost = (e) => {
     e.preventDefault();
     dispatch(deleteArticle(slugParam));
-    navigate('/');
+    navigate(mainPath);
   };
 
   return (
@@ -87,7 +87,7 @@ function Article() {
           <Markdown className={classes.text}>{body}</Markdown>
           <span className={classes.author}>{author.username}</span>
           <span className={classes.date}>{format(new Date(updatedAt || createdAt), 'MMMM dd, yyyy')}</span>
-          <img className={classes.avatar} src={author.image || noAvatar} width="48px" height="48px" alt="author" />
+          <img className={classes.avatar} src={author.image} width="48px" height="48px" alt="author" />
         </div>
       )}
     </>

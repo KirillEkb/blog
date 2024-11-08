@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Form from '../Form/Form';
 import LoadOrError from '../LoadOrError/LoadOrError';
 import { loginUser } from '../../api/api';
+import { mainPath, signUpPath } from '../../pathes';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -12,13 +13,13 @@ const SignIn = () => {
   const { token } = useSelector((state) => state.app.user);
   useEffect(() => {
     if (token) {
-      navigate('/');
+      navigate(mainPath);
     }
   }, [token, navigate]);
   const onSubmit = (data) => {
     dispatch(loginUser(data));
     if (token) {
-      navigate('/');
+      navigate(mainPath);
     }
   };
 
@@ -39,7 +40,7 @@ const SignIn = () => {
   const submitButton = { text: 'Sign in ', disabled: false };
   const bottomText = {
     text: 'Don’t have an account?',
-    link: '/sign-up',
+    link: signUpPath,
     linkText: 'Sign Up',
   };
   return (

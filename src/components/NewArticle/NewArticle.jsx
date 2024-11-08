@@ -11,6 +11,7 @@ import TagAdded from '../TagAdded/TagAdded';
 import LoadOrError from '../LoadOrError/LoadOrError';
 import classes from '../Form/Form.module.scss';
 import { createArticle, editArticle } from '../../api/api';
+import { mainPath, signInPath } from '../../pathes';
 
 import newClasses from './NewArticle.module.scss';
 
@@ -22,7 +23,7 @@ const newArticle = () => {
   const { post } = useSelector((state) => state.app);
   useEffect(() => {
     if (!token) {
-      navigate('/sign-in');
+      navigate(signInPath);
     }
   });
   const [tags, setTags] = useState([...((slugParam && post.tagList) || '')]);
@@ -107,7 +108,7 @@ const newArticle = () => {
     if (slugParam) {
       dispatch(editArticle({ ...data, tagList: tags, slug: slugParam }));
     } else dispatch(createArticle({ ...data, tagList: tags }));
-    navigate('/');
+    navigate(mainPath);
   };
   return (
     <>
