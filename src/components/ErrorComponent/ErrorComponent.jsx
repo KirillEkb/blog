@@ -6,8 +6,8 @@ class ErrorComponent extends Component {
   state = {
     error: null,
   };
-  getDerivedStateFromError() {
-    this.setState({ error: true });
+  static getDerivedStateFromError() {
+    return { error: true };
   }
 
   render() {

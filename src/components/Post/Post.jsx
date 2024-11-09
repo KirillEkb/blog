@@ -7,36 +7,35 @@ import classes from '../Article/Article.module.scss';
 
 import postClasses from './Post.module.scss';
 
-function Post(props) {
-  const { likes, title, tag, text, author, date, avatar } = classes;
-  const articleText = props.body && props.body.length > 200 ? props.body.slice(0, 200) + '...' : props.body;
+function Post({ body = '', tagList = [], slug, title, author, createdAt, favoritesCount, favorited }) {
+  const articleText = body && body.length > 200 ? body.slice(0, 200) + '...' : body;
   const tagText = (tag) => {
     if (tag.length > 10) {
       tag = tag.split(' ')[0];
       if (tag.length > 10) {
-        tag = tag.slice(0, 10);
+        tag = tag.slice(0, 10) || '';
       }
     }
     return tag;
   };
-  const tags = props.tagList
-    .slice(0, 3)
-    .map((el, index) => <Button key={el + index} pclass="tag" className={tag} text={tagText(el)} />);
+  const tags = tagList
+    ?.slice(0, 3)
+    .map((el, index) => <Button key={el + index} pclass="tag" className={classes.tag} text={tagText(el)} />);
 
   return (
     <>
       <div className={postClasses.post}>
-        <Link to={`/article/${props.slug}`} className={title}>
-          {props.title}
+        <Link to={`/article/${slug}`} className={classes.title}>
+          {title}
         </Link>
-        <span className={likes}>
-          <Like favorited={props.favorited} slugParam={props.slug} /> {props.favoritesCount}
+        <span className={classes.likes}>
+          <Like favorited={favorited} slugParam={slug} /> {favoritesCount}
         </span>
         <div>{tags}</div>
-        <div className={text}>{articleText}</div>
-        <span className={author}>{props.author.username}</span>
-        <span className={date}>{format(new Date(props.createdAt), 'MMMMMM dd,yyyy')}</span>
-        <img className={avatar} src={props.author.image} width="48px" height="48px" alt="Фото" />
+        <div className={classes.text}>{articleText}</div>
+        <span className={classes.author}>{author.username}</span>
+        <span className={classes.date}>{format(new Date(createdAt), 'MMMMMM dd,yyyy')}</span>
+        <img className={classes.avatar} src={author.image} width="48px" height="48px" alt="Фото" />
       </div>
     </>
   );
